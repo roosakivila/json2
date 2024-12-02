@@ -41,14 +41,14 @@
 
         function saa(data) {
             let teksti = "<h1>Sää - siitä on aina jotain kerrottavaa</h1>";
-            teksti = teksti + "<p>Millainen sää on Helsingissä? Entä Tampereella?</p>";
+            teksti += "<p>Millainen sää on Helsingissä? Entä Tampereella?</p>";
 
-            teksti = teksti + "<ul>"
-            teksti = teksti + "<li>Kaupunki: " + data.name + "</li>"
-            teksti = teksti + "<li>Kuvaus: " + data.weather[0].description + "</li>"
-            teksti = teksti + "<li>Lämpötila: " + data.main[0].temp + "&degC</li>"
-            teksti = teksti + "<li>Tuulen nopeus: " + data.wind[0].speed + "</li>"
-            teksti = teksti + "</ul>"
+            teksti += "<ul>"
+            teksti += "<li>Kaupunki: " + data.name + "</li>"
+            teksti += "<li>Kuvaus: " + data.weather[0].description + "</li>"
+            // teksti = teksti + "<li>Lämpötila: " + data.main[0].temp + "&degC</li>"
+            // teksti = teksti + "<li>Tuulen nopeus: " + data.wind[0].speed + "</li>"
+            teksti += "</ul>"
 
             // let kuva = 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
             // teksti = teksti + "<p><img src='" + data.kuva + "' alt='kuva' ></p>";
