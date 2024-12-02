@@ -41,12 +41,11 @@
 
         function tapahtumat(data) {
             let teksti = "<h1>Tampereella tapahtuu</h1>";
-            let tapahtumat = data.results;
 
-            for (let i = 0; i < tapahtumat.length; i++) {
-                teksti += "<h2>" + tapahtumat[i].name + "</h2>";
-                teksti += "<p>" + tapahtumat[i].description + "</p>";
-                teksti += "<a href='" + tapahtumat[i].url + "'>Lue lisää</a>";
+            for (let i = 0; i < data.length; i++) {
+                teksti += "<h2>" + data[i].name + "</h2>";
+                teksti += "<p>" + data[i].description + "</p>";
+                teksti += "<a href='" + data[i].url + "'>Lue lisää</a>";
             }
 
 
