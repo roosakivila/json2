@@ -20,41 +20,49 @@
         </a>
     </div>
 
-    <div id="vastaus"></div>
+    <div>
+        <h1>Sää - siitä on aina jotain kerrottavaa</h1>
+        <p>Millainen sää on Helsingissä? Entä Tampereella?</p>
+        <div id="vastaus" class="weatherinfocontainer"></div>
+    </div>
 
     <script>
-        fetch('https://api.openweathermap.org/data/2.5/weather?lang=fi&q=helsinki&units=metric&APPID=665ecd56dfc08dbb50feb8b8f5034e28')
-            // Muunnetaan vastaus JSON muotoon 
-            .then(function (response) {
-                return response.json();
-            })
-            // Käsitellään muunnettu (eli JSON muotoinen) vastaus 
-            .then(function (responseJson) {
-                // kutsutaan saa-funktiota 
-                saa(responseJson);
-            })
-            // Jos tuli jokin virhe 
-            .catch(function (error) {
-                document.getElementById("vastaus").innerHTML =
-                    "<p>Tietoa ei pystytä hakemaan</p>";
-            })
-
         function saa(data) {
-            let teksti = "<h1>Sää - siitä on aina jotain kerrottavaa</h1>";
-            teksti += "<p>Millainen sää on Helsingissä? Entä Tampereella?</p>";
-
-            teksti += "<ul>"
+            let kuva = 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
+            let teksti = "";
+            teksti += "<div>";
+            teksti += "<ul>";
             teksti += "<li>Kaupunki: " + data.name + "</li>"
             teksti += "<li>Kuvaus: " + data.weather[0].description + "</li>"
             teksti += "<li>Lämpötila: " + data.main.temp + "&degC</li>"
-            // teksti += "<li>Tuulen nopeus: " + data.wind[0].speed + "</li>"
+            teksti += "<li>Tuulen nopeus: " + data.wind.speed + " m/s</li>"
             teksti += "</ul>"
+            teksti = teksti + "<p><img src='" + kuva + "' alt='kuva' ></p>";
+            teksti += "</div>"
 
-            // let kuva = 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
-            // teksti = teksti + "<p><img src='" + data.kuva + "' alt='kuva' ></p>";
 
-            document.getElementById("vastaus").innerHTML = teksti;
+            document.getElementById("vastaus").innerHTML += teksti;
         }
+
+        const cities = ["helsinki", "tampere"];
+
+        cities.forEach((city) => {
+            fetch('https://api.openweathermap.org/data/2.5/weather?lang=fi&q=' + city + '&units=metric&APPID=665ecd56dfc08dbb50feb8b8f5034e28')
+                // Muunnetaan vastaus JSON muotoon 
+                .then(function (response) {
+                    return response.json();
+                })
+                // Käsitellään muunnettu (eli JSON muotoinen) vastaus 
+                .then(function (responseJson) {
+                    // kutsutaan saa-funktiota 
+                    saa(responseJson);
+                })
+                // Jos tuli jokin virhe 
+                .catch(function (error) {
+                    document.getElementById("vastaus").innerHTML =
+                        "<p>Tietoa ei pystytä hakemaan</p>";
+                })
+        })
 
     </script>
 
