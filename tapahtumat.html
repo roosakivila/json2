@@ -23,7 +23,7 @@
     <div id="vastaus"></div>
 
     <script>
-        fetch('https://api.visittampere.com/api/v1/visittampere/event/?format=json&limit=20')
+        fetch('https://api.visittampere.com/api/v1/eventztoday/event/all/?format=json&lang=fi&limit=20')
             // Muunnetaan vastaus JSON muotoon 
             .then(function (response) {
                 return response.json();
@@ -41,14 +41,12 @@
 
         function tapahtumat(data) {
             let teksti = "";
-            let tapahtumat = data.results;
 
-            for (var i = 0; i < tapahtumat.length; i++) {
-                let tapahtuma = tapahtumat[i];
+            for (var i = 0; i < data.length; i++) {
                 teksti = "<h1>Tampereella tapahtuu</h1>";
-                teksti = teksti + "<h2>" + tapahtuma.name + "</h2>";
-                teksti = teksti + "<p>" + tapahtuma.description + "</p>";
-                teksti = teksti + "<a href='" + tapahtuma.url + "'>Lue lisää</a>";
+                teksti = teksti + "<h2>" + data[i].name + "</h2>";
+                teksti = teksti + "<p>" + data[i].description + "</p>";
+                teksti = teksti + "<a href='" + data[i].url + "'>Lue lisää</a>";
             }
 
             document.getElementById("vastaus").innerHTML = teksti;
