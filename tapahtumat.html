@@ -45,7 +45,8 @@
 
             for (var i = 0; i < tapahtumat.length; i++) {
                 let tapahtuma = tapahtumat[i];
-                teksti = teksti + "<h1>" + tapahtuma.name + "</h1>";
+                teksti = "<h1>Tampereella tapahtuu</h1>"
+                teksti = teksti + "<h2>" + tapahtuma.name + "</h2>";
                 teksti = teksti + "<p>" + tapahtuma.description + "</p>";
                 teksti = teksti + "<a href='" + tapahtuma.url + "'>Lue lisää</a>";
             }
