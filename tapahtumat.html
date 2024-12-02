@@ -23,7 +23,7 @@
     <div id="vastaus"></div>
 
     <script>
-        fetch('https://api.visittampere.com/api/v1/visittampere/event/?format=json&limit=1')
+        fetch('https://api.visittampere.com/api/v1/visittampere/event/?format=json&limit=20')
             // Muunnetaan vastaus JSON muotoon 
             .then(function (response) {
                 return response.json();
