@@ -31,7 +31,7 @@
             // Käsitellään muunnettu (eli JSON muotoinen) vastaus 
             .then(function (responseJson) {
                 // Kutsutaan funktiota ja välitetään sille json-vastaus  
-                tapahtumat(responseJson)
+                tapahtumat(responseJson);
             })
             // Jos tuli jokin virhe 
             .catch(function (error) {
@@ -41,15 +41,16 @@
 
         function tapahtumat(data) {
             let teksti = "";
-            let tapahtumat = data.results; // Tämä riippuu API:n rakenteesta
+            let tapahtumat = data.results;
 
-            // Iteroidaan tapahtumien yli
             for (var i = 0; i < tapahtumat.length; i++) {
                 let tapahtuma = tapahtumat[i];
                 teksti = teksti + "<h1>" + tapahtuma.name + "</h1>";
                 teksti = teksti + "<p>" + tapahtuma.description + "</p>";
                 teksti = teksti + "<a href='" + tapahtuma.url + "'>Lue lisää</a>";
             }
+
+            document.getElementById("vastaus").innerHTML = teksti;
         }
     </script>
 
