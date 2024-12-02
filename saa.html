@@ -46,8 +46,8 @@
             teksti = teksti + "<ul>"
             teksti = teksti + "<li>Kaupunki: " + data.name + "</li>"
             teksti = teksti + "<li>Kuvaus: " + data.weather[0].description + "</li>"
-            teksti = teksti + "<li>Lämpötila: " + data.temp + "&deg</li>"
-            teksti = teksti + "<li>Tuulen nopeus: " + data.wind + "</li>"
+            teksti = teksti + "<li>Lämpötila: " + data.main[0].temp + "&degC</li>"
+            teksti = teksti + "<li>Tuulen nopeus: " + data.wind[0].speed + "</li>"
             teksti = teksti + "</ul>"
             // tähän tulee muiden tietojen käsittely  
             // teksti-muuttujan sisällön tulostus  
