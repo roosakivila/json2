@@ -40,10 +40,12 @@
             })
 
         function saa(data) {
-            var teksti = ""; // määritellään muuttuja, johon tulostettava tieto 
+            let teksti = "<h1>Sää - siitä on aina jotain kerrottavaa</h1>";
+            teksti = teksti + "<p>Millainen sää on Helsingissä? Entä Tampereella?</p>";
 
-            // otsikkotiedon hakeminen ja sijoittaminen h1-elementtiin 
-            teksti = "<h1>" + data.name + "</h1>";
+            teksti = teksti + "<ul>"
+            teksti = teksti + "<li> Kaupunki: " + data.name + "</li>"
+            teksti = teksti + "</ul>"
             // tähän tulee muiden tietojen käsittely  
             // teksti-muuttujan sisällön tulostus  
             document.getElementById("vastaus").innerHTML = teksti;
