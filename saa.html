@@ -20,6 +20,37 @@
         </a>
     </div>
 
+    <div id="vastaus"></div>
+
+    <script>
+        fetch('https://api.openweathermap.org/data/2.5/weather?lang=fi&q=helsinki&units=metric&APPID=665ecd56dfc08dbb50feb8b8f5034e28')
+            // Muunnetaan vastaus JSON muotoon 
+            .then(function (response) {
+                return response.json();
+            })
+            // Käsitellään muunnettu (eli JSON muotoinen) vastaus 
+            .then(function (responseJson) {
+                // kutsutaan saa-funktiota 
+                saa(responseJson);
+            })
+            // Jos tuli jokin virhe 
+            .catch(function (error) {
+                document.getElementById("vastaus").innerHTML =
+                    "<p>Tietoa ei pystytä hakemaan</p>";
+            })
+
+        function saa(data) {
+            var teksti = ""; // määritellään muuttuja, johon tulostettava tieto 
+
+            // otsikkotiedon hakeminen ja sijoittaminen h1-elementtiin 
+            teksti = "<h1>" + data.name + "</h1>";
+            // tähän tulee muiden tietojen käsittely  
+            // teksti-muuttujan sisällön tulostus  
+            document.getElementById("vastaus").innerHTML = teksti;
+        }
+
+    </script>
+
     <!--navipalkinscript-->
     <script>
         function myFunction() {
