@@ -40,13 +40,16 @@
             })
 
         function tapahtumat(data) {
-            var teksti = "";
-            for (var i = 0; i < data.length; i++) {
-                //hae tapahtuman nimi, kuvaus ja url-osoite 
-                teksti = "<h1>" + data.name[i] + "</h1>";
+            let teksti = "";
+            let tapahtumat = data.results; // Tämä riippuu API:n rakenteesta
+
+            // Iteroidaan tapahtumien yli
+            for (var i = 0; i < tapahtumat.length; i++) {
+                let tapahtuma = tapahtumat[i];
+                teksti = teksti + "<h1>" + tapahtuma.name + "</h1>";
+                teksti = teksti + "<p>" + tapahtuma.description + "</p>";
+                teksti = teksti + "<a href='" + tapahtuma.url + "'>Lue lisää</a>";
             }
-            // tulosta teksti-muuttujan sisältö web-sivulle 
-            document.getElementById("vastaus").innerHTML = teksti;
         }
     </script>
 
