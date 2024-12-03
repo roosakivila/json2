@@ -14,11 +14,63 @@
         <a href="tapahtumat.html">Tapahtumat</a>
         <a href="saa.html">Sää</a>
         <a href="liikennekamera.html">Liikennekamera</a>
-        <a href="junat" class="active">Junat</a>
+        <a href="junat.html" class="active">Junat</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
     </div>
+
+    <div>
+        <h1>Mennäänkö junalla Tampereelle?</h1>
+        <p>Kuinka usein junia menee?</p>
+        <div id="vastaus"></div>
+    </div>
+
+    <script>
+        fetch('https://rata.digitraffic.fi/api/v1/live-trains/station/HKI?departing_trains=100&include_nonstopping=false')
+            // Muunnetaan vastaus JSON muotoon 
+            .then(function (response) {
+                return response.json();
+            })
+            // Käsitellään muunnettu (eli JSON muotoinen) vastaus 
+            .then(function (responseJson) {
+                // kutsutaan saa-funktiota 
+                junat(responseJson);
+            })
+            // Jos tuli jokin virhe 
+            .catch(function (error) {
+                document.getElementById("vastaus").innerHTML =
+                    "<p>Tietoa ei pystytä hakemaan</p>";
+            })
+
+        function junat(data) {
+            let teksti = "<hr>";
+
+            for (let i = 0; i < data.length; i++) {
+                for (let j = 0; j < data[i].timeTableRows.length; j++) {
+                    if (data[i].trainCategory == "Long-distance") {
+                        if (data[i].timeTableRows[j].stationShortCode == "TPE") {
+                            if (data[i].timeTableRows[j].type == "DEPARTURE") {
+                                teksti += "<p style='font-weight: bold;'>Juna numero " + data[i].trainNumber + "</p>";
+                                teksti += "<p>Juna tyyppi: " + data[i].trainType + "</p>";
+
+                                let pvm = data[i].timeTableRows[j].scheduledTime;
+                                let aika = pvm.substr(0, 10) + " kello: " + pvm.substr(11, 5);
+                                teksti += "<p>Lähtee Helsingistä " + aika + ".</p>";
+                                teksti += "<hr>"
+                            }
+
+                        }
+
+                    }
+                }
+            }
+
+            document.getElementById("vastaus").innerHTML = teksti;
+
+        }
+
+    </script>
 
     <!--navipalkinscript-->
     <script>

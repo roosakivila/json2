@@ -14,7 +14,7 @@
         <a href="tapahtumat.html" class="active">Tapahtumat</a>
         <a href="saa.html">Sää</a>
         <a href="liikennekamera.html">Liikennekamera</a>
-        <a href="junat">Junat</a>
+        <a href="junat.html">Junat</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
@@ -45,7 +45,7 @@
             for (let i = 0; i < data.length; i++) {
                 teksti += "<h2>" + data[i].name + "</h2>";
                 teksti += "<p>" + data[i].description + "</p>";
-                teksti += "<a href='" + data[i].url + "'>" + data[i].url + "</a>";
+                teksti += "<p><a href='" + data[i].url + "'>" + data[i].url + "</a></p>";
             }
 
 

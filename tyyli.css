@@ -59,6 +59,11 @@ p {
     justify-content: center;
 }
 
+.trafficcamera img {
+    max-width: 90%;
+    height: auto;
+}
+
 
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 600px) {

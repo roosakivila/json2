@@ -14,11 +14,49 @@
         <a href="tapahtumat.html">Tapahtumat</a>
         <a href="saa.html">Sää</a>
         <a href="liikennekamera.html" class="active">Liikennekamera</a>
-        <a href="junat">Junat</a>
+        <a href="junat.html">Junat</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
     </div>
+
+    <div>
+        <h1>Autolla Tampereelle</h1>
+        <p>Minkälainen keli siellä on?</p>
+        <div id="vastaus" class="trafficcamera"></div>
+    </div>
+
+    <script>
+        fetch('https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507')
+            // Muunnetaan vastaus JSON muotoon 
+            .then(function (response) {
+                return response.json();
+            })
+            // Käsitellään muunnettu (eli JSON muotoinen) vastaus 
+            .then(function (responseJson) {
+                // kutsutaan saa-funktiota 
+                kuvat(responseJson);
+            })
+            // Jos tuli jokin virhe 
+            .catch(function (error) {
+                document.getElementById("vastaus").innerHTML =
+                    "<p>Tietoa ei pystytä hakemaan</p>";
+            })
+
+        function kuvat(data) {
+            let teksti = "";
+            const properties = data.properties;
+            const presets = data.properties.presets;
+
+            for (let i = 0; i < presets.length; i++) {
+                teksti += "<p>Viimeksi päivitetty: " + properties.dataUpdatedTime + "</p>";
+                teksti += "<p><img src='" + presets[i].imageUrl + "' alt='kuva' ></p>";
+            }
+
+            document.getElementById("vastaus").innerHTML = teksti;
+        }
+
+    </script>
 
     <!--navipalkinscript-->
     <script>
